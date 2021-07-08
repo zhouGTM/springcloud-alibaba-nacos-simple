@@ -1,0 +1,21 @@
+server:
+  port: 8777
+spring:
+  application:
+    name: consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 # 注册中心地址
+      config:
+        server-addr: 127.0.0.1:8848 # 配置中心地址
+        file-extension: yml # dataid 的名称就是application的name加上file-extension service1.yaml
+        namespace: 21b4107c-08b9-4ce2-b5f3-b0a72d6b4f8e
+        group: Test_GROUP
+        extension-configs[0]:
+          data-id: common.yaml
+          group: COMMON_GROUP
+#        extension-configs:
+#          data-id: commom.yml
+#          group: COMMON_GROUP
+
