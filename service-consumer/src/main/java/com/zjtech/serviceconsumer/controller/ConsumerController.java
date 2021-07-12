@@ -1,11 +1,11 @@
 package com.zjtech.serviceconsumer.controller;
 
 import com.zjtech.serviceconsumer.feign.ProviderClient;
+import com.zjtech.serviceconsumer.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RefreshScope //Nacos实时动态刷新配置
@@ -14,9 +14,10 @@ public class ConsumerController {
     @Autowired
     ProviderClient providerClient;
 
-    @GetMapping("/hi-feign")
-    public String hiFeign(){
-        return providerClient.hi("feign");
+    @RequestMapping("/get/user")
+    @ResponseBody
+    public User getUserInfo(@RequestParam int uid){
+        return providerClient.getUserInfo(uid);
     }
 
     @Value("${person.name}")
