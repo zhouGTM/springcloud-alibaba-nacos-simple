@@ -1,5 +1,6 @@
 package com.zjtech.serviceprovider;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,17 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 @EnableDiscoveryClient
+@MapperScan("com.zjtech.serviceprovider.dao")
 public class ServiceProviderApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ServiceProviderApplication.class, args);
-	}
-
-	@Value("${server.port}")
-	String port;
-
-	@GetMapping("/hi")
-	public String sayHi(@RequestParam(value = "name", defaultValue = "lz",required = false) String name) {
-		return "hello " + name + ", i'm provider ,my port:" + port;
 	}
 }
